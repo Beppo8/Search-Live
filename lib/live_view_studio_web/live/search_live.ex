@@ -62,4 +62,14 @@ defmodule LiveViewStudioWeb.SearchLive do
     """
   end
 
+  def handle_event("zip-search", %{"zip" => zip}, socket) do
+    socket =
+      assign(socket,
+        zip: zip,
+        stores: Stores.search_by_zip(zip)
+      )
+
+    {:noreply, socket}
+  end
+
 end
